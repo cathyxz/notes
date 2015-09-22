@@ -1,0 +1,14 @@
+html
+	head
+		title Notes
+	body
+		div.container
+			h1 Notes
+			each note in notes
+				#note
+					p= note.content
+			form(name="createNote", action="/note/new", method="post")
+				input(type="text", name="title", placeholder="Title")
+				input(type="text", name="date", placeholder="January 1")
+				textarea(name="content", rows="4" placeholder="Type your note here...")
+				input(type="submit" value="Post your Note!")

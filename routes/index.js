@@ -5,7 +5,11 @@ exports.view = function(req, res) {
 		.find()
 		.exec(renderNotes);
 	function renderNotes(err, notes) {
-		res.render('index', {'notes': notes});
-		console.log('I rendered shit');
+		try {
+			res.render('index', {notes: notes});
+		}
+		catch (e) {
+			console.log(e);
+		}
 	}
 };
