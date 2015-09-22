@@ -4,8 +4,10 @@ var express = require('express');
 var http = require('http');
 var path = require('path');
 var mongoose = require('mongoose');
+var bodyParser = require('body-parser');
 var index = require('./routes/index');
 var router = require('./router');
+
 
 // Connect to DB
 var local_db_name = 'myTest';
@@ -18,9 +20,12 @@ app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
 app.set('port', process.env.PORT || 3000);
 
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+	extended: true
+}));
+
 app.use('/', router);
-
-
 
 http.createServer(app).listen(app.get('port'), function() {
 	console.log("Node.js server running on port %s.", app.get('port'));

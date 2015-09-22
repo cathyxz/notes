@@ -10,7 +10,7 @@ exports.noteInfo = function(req, res) {
 	function afterQuery(err, notes) {
 		if(err) {
 			console.log(err);
-			res.send(500);
+			res.sendStatus(500);
 		} else {
 			res.json(projects[0]);
 
@@ -20,6 +20,7 @@ exports.noteInfo = function(req, res) {
 
 exports.add = function(req, res) {
 	var form_data = req.body;
+	console.log(req.body.HobbsOut);
 
 	var newNote = models.Note({
 		'title': form_data['note_title'],
@@ -32,9 +33,9 @@ exports.add = function(req, res) {
 	function afterSave(err) {
 		if(err) {
 			console.log(err);
-			res.send(500);
+			res.sendStatus(500);
 		} else {
-			res.send(200);
+			res.sendStatus(200);
 		}
 	}
 }
@@ -50,9 +51,9 @@ exports.remove = function(req, res) {
 	function afterRemove(err) {
 		if(err) {
 			console.log(err);
-			res.send(500);
+			res.sendStatus(500);
 		} else {
-			res.send(200);
+			res.sendStatus(200);
 		}
 	}
 }
